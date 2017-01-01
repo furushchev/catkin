@@ -10,6 +10,13 @@
 # :outvar <comp>_INCLUDE_DIRS/_LIBRARY_DIRS/_LIBRARY:
 #    contains the include dirs / library dirs / libraries of the searched component <comp>.
 
+if(APPLE)
+  # find standard libraries first
+  # https://github.com/ros/class_loader/issues/44
+  # https://github.com/mikepurvis/ros-install-osx/issues/73
+  set(CMAKE_FIND_FRAMEWORK LAST)
+endif()
+
 if(CATKIN_TOPLEVEL_FIND_PACKAGE OR NOT CATKIN_TOPLEVEL)
   set(catkin_EXTRAS_DIR "@PKG_CMAKE_DIR@")
 
